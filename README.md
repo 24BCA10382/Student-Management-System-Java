@@ -1,78 +1,69 @@
-# Console-Based Student Management System using Java
+import java.util.ArrayList;
+import java.util.Scanner;
 
-## Project Overview
+class Student {
+    int id;
+    String name;
 
-This project is a simple console-based Student Management System developed using Java. It allows users to manage student records efficiently through a menu-driven interface.
+    Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+}
 
-The system is designed for beginners to understand basic programming concepts such as classes, objects, loops, and data structures.
+public class StudentManagement {
+    public static void main(String[] args) {
+        ArrayList<Student> students = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
 
----
+        while (true) {
+            System.out.println("\n--- Student Management System ---");
+            System.out.println("1. Add Student");
+            System.out.println("2. View Students");
+            System.out.println("3. Delete Student");
+            System.out.println("4. Exit");
 
-## Features
+            System.out.print("Enter choice: ");
+            int choice = sc.nextInt();
 
-* Add student details (ID and Name)
-* View all student records
-* Delete a student by ID
-* Interactive menu-driven system
-* Easy to use and understand
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter ID: ");
+                    int id = sc.nextInt();
+                    sc.nextLine();
 
----
+                    System.out.print("Enter Name: ");
+                    String name = sc.nextLine();
 
-## Technologies Used
+                    students.add(new Student(id, name));
+                    System.out.println("Student added successfully!");
+                    break;
 
-* Java Programming Language
-* ArrayList (for dynamic data storage)
-* Scanner Class (for user input)
+                case 2:
+                    if (students.isEmpty()) {
+                        System.out.println("No students found.");
+                    } else {
+                        for (Student s : students) {
+                            System.out.println("ID: " + s.id + ", Name: " + s.name);
+                        }
+                    }
+                    break;
 
----
+                case 3:
+                    System.out.print("Enter ID to delete: ");
+                    int deleteId = sc.nextInt();
 
-## How the System Works
+                    students.removeIf(s -> s.id == deleteId);
+                    System.out.println("Student deleted if found.");
+                    break;
 
-The program runs in a loop and displays a menu with different options. The user selects an option to perform operations such as adding, viewing, or deleting student records.
+                case 4:
+                    System.out.println("Exiting...");
+                    return;
 
-All data is stored temporarily using an ArrayList, which allows dynamic storage and easy manipulation of data.
-
----
-
-## How to Run the Project
-
-### Step 1: Compile the Program
-
-javac StudentManagement.java
-
-### Step 2: Run the Program
-
-java StudentManagement
-
----
-
-## Sample Output
-
-1. Add Student
-2. View Students
-3. Delete Student
-4. Exit
-
----
-
-## Objectives
-
-* To understand Java programming fundamentals
-* To implement a real-world application using Java
-* To practice data handling using ArrayList
-
----
-
-## Future Improvements
-
-* Add more student details (age, course, etc.)
-* Connect to a database for permanent storage
-* Create a graphical user interface (GUI)
-
----
-
-## Author
-
-Lomathemba Qoma
-
-h
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }
+    }
+}
