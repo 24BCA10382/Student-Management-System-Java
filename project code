@@ -1,17 +1,18 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Student {
-    int id;
-    String name;
-
-    Student(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-}
-
 public class StudentManagement {
+
+    static class Student {
+        int id;
+        String name;
+
+        Student(int id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+    }
+
     public static void main(String[] args) {
         ArrayList<Student> students = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
@@ -30,7 +31,7 @@ public class StudentManagement {
                 case 1:
                     System.out.print("Enter ID: ");
                     int id = sc.nextInt();
-                    sc.nextLine();
+                    sc.nextLine(); 
 
                     System.out.print("Enter Name: ");
                     String name = sc.nextLine();
@@ -59,6 +60,7 @@ public class StudentManagement {
 
                 case 4:
                     System.out.println("Exiting...");
+                    sc.close();
                     return;
 
                 default:
